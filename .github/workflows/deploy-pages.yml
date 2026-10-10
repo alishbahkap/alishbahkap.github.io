@@ -1,10 +1,10 @@
 name: Deploy to GitHub Pages
 
-# Runs only when started by hand (Actions tab → this workflow → Run workflow).
-# To deploy on every push to main instead, add:
-#   push:
-#     branches: [main]
+# Deploys automatically on every push to main.
+# Can also be started by hand: Actions tab → this workflow → Run workflow.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
