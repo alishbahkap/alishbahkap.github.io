@@ -1,0 +1,38 @@
+{
+  "name": "alishbah-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.18.0"
+  },
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "dev:clean": "npm run clean && next dev --hostname 127.0.0.1",
+    "build": "npm run clean && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm run build",
+    "audit": "npm audit --audit-level=high",
+    "clean": "node -e \"for (const d of ['.next', 'out']) require('fs').rmSync(d, { recursive: true, force: true })\""
+  },
+  "dependencies": {
+    "next": "16.2.10",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.20.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.10",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "flatted": "3.4.2",
+    "postcss": "8.5.19"
+  }
+}
