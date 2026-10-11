@@ -34,6 +34,8 @@ export type CreativeProject = {
    * e.g. ["First paragraph.", "Second paragraph."]. Leave as [] to show no text.
    */
   description: string[];
+  /** Logos: shown whole and padded on a soft panel instead of filling the frame. */
+  logo?: boolean;
 };
 
 // Ratios use each image's exact pixel size (width/height), so tiles never crop.
@@ -65,6 +67,90 @@ export const creativeProjects: CreativeProject[] = [
     title: "Luma Arancio — Feature Sections",
     category: "shopify",
     ratio: "aspect-[1825/1218]",
+    description: [],
+  },
+
+  // Brand identity (described by what each brand is, not by name)
+  {
+    slug: "advertising-logo",
+    title: "Advertising Company Logo",
+    category: "brand",
+    ratio: "aspect-square",
+    description: ["Logo for an advertising company."],
+    logo: true,
+  },
+  {
+    slug: "beauty-health-logo",
+    title: "Women's Beauty & Health Brand",
+    category: "brand",
+    ratio: "aspect-square",
+    description: ["Logo for a women's beauty and health brand."],
+    logo: true,
+  },
+  {
+    slug: "jewellery-banner",
+    title: "Jewellery Brand Banner",
+    category: "brand",
+    ratio: "aspect-square",
+    description: ["Banner for a jewellery brand."],
+  },
+  {
+    slug: "baby-care-logo",
+    title: "Baby Care Brand Logo",
+    category: "brand",
+    ratio: "aspect-square",
+    description: ["Logo for a baby care brand."],
+    logo: true,
+  },
+
+  // Campaigns
+  {
+    slug: "retropixel-black-friday-sale",
+    title: "RetroPixel — Black Friday Sale",
+    category: "campaign",
+    ratio: "aspect-square",
+    description: [],
+  },
+  {
+    slug: "game-on",
+    title: "Game On.",
+    category: "campaign",
+    ratio: "aspect-[2/1]",
+    description: [],
+  },
+  {
+    slug: "retropixel-black-friday-gift",
+    title: "RetroPixel — The Perfect Gift",
+    category: "campaign",
+    ratio: "aspect-square",
+    description: [],
+  },
+  {
+    slug: "bitboy-mines",
+    title: "You Play. BitBoy Mines.",
+    category: "campaign",
+    ratio: "aspect-square",
+    description: [],
+  },
+  {
+    slug: "retropixel-pro-v2-ad",
+    title: "RetroPixel Pro V2 — Launch Ad",
+    category: "campaign",
+    ratio: "aspect-square",
+    description: [],
+  },
+  {
+    slug: "connect-play-earn",
+    title: "Connect. Play. Earn.",
+    category: "campaign",
+    ratio: "aspect-[2/1]",
+    description: [],
+  },
+  {
+    slug: "illuminate-with-intention",
+    title: "Illuminate with Intention",
+    category: "campaign",
+    ratio: "aspect-square",
     description: [],
   },
 ];

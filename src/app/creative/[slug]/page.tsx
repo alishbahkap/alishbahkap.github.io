@@ -49,7 +49,9 @@ export default async function CreativeProjectPage({ params }: Props) {
 
         {/* The whole picture, uncropped, sized to fit the screen */}
         <figure className="mt-12 sm:mt-16">
-          {src ? (
+          {src && project.logo ? (
+            <ImageBox src={src} alt={project.title} ratio="aspect-square" logo className="mx-auto w-full max-w-xl" />
+          ) : src ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={src} alt={project.title} className="mx-auto block h-auto max-h-[80svh] w-auto max-w-full" />
           ) : (

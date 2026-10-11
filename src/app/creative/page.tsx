@@ -19,6 +19,7 @@ export default function Creative() {
     category: p.category,
     ratio: p.ratio,
     src: photo(`${p.slug}-cover`),
+    logo: p.logo,
   }));
 
   return (

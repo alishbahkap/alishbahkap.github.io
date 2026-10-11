@@ -13,6 +13,7 @@ export type CreativeTile = {
   category: CreativeCategory;
   ratio: string;
   src?: string;
+  logo?: boolean;
 };
 
 type Filter = CreativeCategory | "all";
@@ -56,7 +57,7 @@ export function GalleryView({ tiles, filter }: { tiles: CreativeTile[]; filter: 
                 href={filter === "all" ? `/creative/${tile.slug}` : `/creative/${tile.slug}?from=${filter}`}
                 className="group block"
               >
-                <ImageBox src={tile.src} alt={tile.title} ratio={tile.ratio} />
+                <ImageBox src={tile.src} alt={tile.title} ratio={tile.ratio} logo={tile.logo} />
                 <p className="mt-3 text-center text-sm tracking-[0.06em] uppercase transition-colors duration-200 group-hover:text-oxblood group-focus-visible:text-oxblood">
                   {tile.title}
                 </p>
