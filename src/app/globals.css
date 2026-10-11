@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
-@theme inline {
+/* Colours are real CSS variables, so a section can override them (see .theme-dark). */
+@theme {
   --color-cream: #faf8f3;
   --color-panel: #f0ece4;
   --color-espresso: #221a15;
   --color-muted: #7a6e64;
   --color-rule: #d9d1c4;
   --color-oxblood: #6e1f24;
+}
 
+@theme inline {
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-playfair), ui-serif, Georgia, serif;
 }
@@ -28,8 +31,16 @@ body {
 }
 
 :focus-visible {
-  outline: 1px solid #6e1f24;
+  outline: 1px solid var(--color-oxblood);
   outline-offset: 4px;
+}
+
+/* Dark sections (espresso background, cream text). Burgundy is too dark to read
+   on espresso, so the accent becomes a lighter dusty rose from the same family. */
+.theme-dark {
+  --color-oxblood: #d4a3a6;
+  background: var(--color-espresso);
+  color: var(--color-cream);
 }
 
 /* Page entrance: a short fade, nothing more */

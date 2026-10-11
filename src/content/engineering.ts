@@ -13,6 +13,8 @@ export type EngineeringProject = {
   title: string;
   /** One line under the title on the gallery card. */
   summary: string;
+  /** Tagline under the summary on the card, joined with " - ". */
+  tags: string[];
   skills: string[];
   /** Label beside the progress bar, e.g. "In progress" or "Complete". */
   status: string;
@@ -39,6 +41,7 @@ export const engineeringProjects: EngineeringProject[] = [
     slug: "brewos",
     title: "BrewOS",
     summary: "ESP32 Espresso System",
+    tags: ["Embedded", "IoT", "C/C++"],
     skills: ["ESP32", "ESP-IDF", "C/C++", "IoT"],
     status: "In progress",
     gallery: placeholderGallery("brewos"),
@@ -60,6 +63,7 @@ export const engineeringProjects: EngineeringProject[] = [
     slug: "rabbithole",
     title: "RabbitHole",
     summary: "Literary Discovery Program",
+    tags: ["Software", "React", "TypeScript"],
     skills: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
     status: "In progress",
     gallery: placeholderGallery("rabbithole"),

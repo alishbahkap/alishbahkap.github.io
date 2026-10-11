@@ -11,26 +11,29 @@ export const metadata: Metadata = {
 
 export default function Engineering() {
   return (
-    <>
-      <BreadcrumbBar trail={[{ label: "Engineering", caps: true }]} back={<BackLink href="/" />} />
+    // theme-dark (globals.css): espresso background, cream text, lighter accent
+    <div className="theme-dark min-h-svh">
+      <BreadcrumbBar large trail={[{ label: "Engineering", caps: true }]} back={<BackLink href="/" />} />
 
       <main className="page-in mx-auto max-w-6xl px-5 pb-32 sm:px-10">
         <h1 className="sr-only">Engineering</h1>
-        <h2 className="mt-14 text-center text-lg sm:mt-16">Selected Works:</h2>
+        <h2 className="mt-20 text-center text-2xl font-medium sm:mt-24">Selected Works:</h2>
 
-        <ul className="mt-10 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10">
+        {/* Flex + justify-center keeps the cards centered however many there are */}
+        <ul className="mt-14 flex flex-wrap justify-center gap-x-16 gap-y-20 sm:mt-16">
           {engineeringProjects.map((project) => (
-            <li key={project.slug}>
+            <li key={project.slug} className="w-full max-w-[26rem] sm:w-[22rem] lg:w-[26rem]">
               <ProjectCard
                 href={`/engineering/${project.slug}`}
                 image={photo(`${project.slug}-cover`)}
                 title={project.title}
                 summary={project.summary}
+                tags={project.tags}
               />
             </li>
           ))}
         </ul>
       </main>
-    </>
+    </div>
   );
 }

@@ -15,14 +15,28 @@ export type Crumb = {
  * "ENGINEERING ── BrewOS ─────────── BACK"
  * Short fixed rules sit between crumbs; one flexible rule fills the space before BACK.
  */
-export function BreadcrumbBar({ trail, back }: { trail: Crumb[]; back: React.ReactNode }) {
+export function BreadcrumbBar({
+  trail,
+  back,
+  large = false,
+}: {
+  trail: Crumb[];
+  back: React.ReactNode;
+  /** Bigger, slightly bolder text and more space above (used on /engineering). */
+  large?: boolean;
+}) {
+  const size = large
+    ? "pt-12 sm:pt-16 text-base font-medium sm:text-lg"
+    : "pt-8 sm:pt-10 text-sm sm:text-base";
+
   return (
-    <header className="mx-auto max-w-[88rem] px-5 pt-8 sm:px-10 sm:pt-10">
-      <nav aria-label="Breadcrumb" className="flex items-center gap-3 text-sm tracking-[0.06em] sm:gap-6 sm:text-base">
+    <header className={`mx-auto max-w-[88rem] px-5 sm:px-10 ${size}`}>
+      {/* Rules use bg-current, so they match the text colour on light or dark pages */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-3 tracking-[0.06em] sm:gap-6">
         <ol className="flex min-w-0 items-center gap-3 sm:gap-6">
           {trail.map((crumb, i) => (
             <li key={crumb.label + i} className="flex min-w-0 items-center gap-3 sm:gap-6">
-              {i > 0 && <span aria-hidden className="h-px w-6 shrink-0 bg-espresso sm:w-16" />}
+              {i > 0 && <span aria-hidden className="h-px w-6 shrink-0 bg-current sm:w-16" />}
               {crumb.href ? (
                 <Link href={crumb.href} className={`truncate ${crumb.caps ? "uppercase" : ""} ${linkTone}`}>
                   {crumb.label}
@@ -35,7 +49,7 @@ export function BreadcrumbBar({ trail, back }: { trail: Crumb[]; back: React.Rea
             </li>
           ))}
         </ol>
-        <span aria-hidden className="h-px min-w-6 flex-1 bg-espresso" />
+        <span aria-hidden className="h-px min-w-6 flex-1 bg-current" />
         {back}
       </nav>
     </header>
