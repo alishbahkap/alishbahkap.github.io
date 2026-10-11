@@ -29,29 +29,42 @@ export type CreativeProject = {
   category: CreativeCategory;
   /** Shape of the tile on /creative (and of the placeholder until a photo exists). */
   ratio: string;
-  /** Text under the picture on the project page. One string per paragraph. */
+  /**
+   * Text under the picture on the project page. One string per paragraph,
+   * e.g. ["First paragraph.", "Second paragraph."]. Leave as [] to show no text.
+   */
   description: string[];
-  placeholder?: boolean;
 };
 
-// Wireframe placeholders, to be replaced with real projects.
-const placeholders: [CreativeCategory, string][] = [
-  ["brand", "aspect-square"],
-  ["shopify", "aspect-[2/3]"],
-  ["campaign", "aspect-[16/9]"],
-  ["shopify", "aspect-[4/3]"],
-  ["campaign", "aspect-square"],
-  ["brand", "aspect-[3/4]"],
-  ["campaign", "aspect-[4/3]"],
-  ["brand", "aspect-[4/3]"],
-  ["shopify", "aspect-[3/4]"],
+// Ratios use each image's exact pixel size (width/height), so tiles never crop.
+// Order here is the order in the gallery (it fills top-to-bottom, column by column).
+export const creativeProjects: CreativeProject[] = [
+  {
+    slug: "nuve-luma-arancio",
+    title: "Nuvé Luma Arancio",
+    category: "shopify",
+    ratio: "aspect-[2040/1162]",
+    description: [],
+  },
+  {
+    slug: "retropixel-pro-v2",
+    title: "RetroPixel Pro V2",
+    category: "shopify",
+    ratio: "aspect-[1290/2209]",
+    description: [],
+  },
+  {
+    slug: "nuve-luma-mandala",
+    title: "Nuvé Luma Mandala",
+    category: "shopify",
+    ratio: "aspect-[2048/1228]",
+    description: [],
+  },
+  {
+    slug: "luma-arancio-features",
+    title: "Luma Arancio — Feature Sections",
+    category: "shopify",
+    ratio: "aspect-[1825/1218]",
+    description: [],
+  },
 ];
-
-export const creativeProjects: CreativeProject[] = placeholders.map(([category, ratio], i) => ({
-  slug: `example-${i + 1}`,
-  title: "Ex.",
-  category,
-  ratio,
-  description: ["Project description."],
-  placeholder: true,
-}));
