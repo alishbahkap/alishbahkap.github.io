@@ -26,7 +26,6 @@ export default function Engineering() {
                 image={photo(`${project.slug}-cover`)}
                 title={project.title}
                 summary={project.summary}
-                tags={project.tags}
               />
             </li>
           ))}

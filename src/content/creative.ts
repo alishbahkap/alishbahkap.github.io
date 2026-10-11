@@ -2,8 +2,9 @@
  * Creative / commerce projects. Each entry drives a tile on /creative and its
  * own page at /creative/<slug>.
  *
- * Images are found by slot name in public/work: the tile uses "<slug>-cover",
- * the project page uses each entry in `images`.
+ * Image: public/work/<slug>-cover.jpg (or .png/.webp). The tile shows it cropped
+ * to `ratio`; the project page shows the whole picture, with `description`
+ * underneath.
  *
  * Tailwind finds class names by scanning source files, so ratios must be written
  * out in full ("aspect-[3/4]"), never built from pieces.
@@ -22,23 +23,16 @@ export function isCategory(value: string | null | undefined): value is CreativeC
   return CATEGORIES.includes(value as CreativeCategory);
 }
 
-export type CreativeImage = { slot: string; ratio: string; caption?: string };
-
 export type CreativeProject = {
   slug: string;
   title: string;
   category: CreativeCategory;
-  /** Shape of the tile on /creative. */
+  /** Shape of the tile on /creative (and of the placeholder until a photo exists). */
   ratio: string;
-  description?: string;
-  images: CreativeImage[];
+  /** Text under the picture on the project page. One string per paragraph. */
+  description: string[];
   placeholder?: boolean;
 };
-
-const RATIOS = ["aspect-square", "aspect-[3/4]", "aspect-[4/3]", "aspect-[2/3]", "aspect-[5/4]", "aspect-[4/5]"];
-
-const placeholderImages = (slug: string): CreativeImage[] =>
-  RATIOS.map((ratio, i) => ({ slot: `${slug}-${i + 1}`, ratio, caption: "Ex." }));
 
 // Wireframe placeholders, to be replaced with real projects.
 const placeholders: [CreativeCategory, string][] = [
@@ -58,6 +52,6 @@ export const creativeProjects: CreativeProject[] = placeholders.map(([category, 
   title: "Ex.",
   category,
   ratio,
-  images: placeholderImages(`example-${i + 1}`),
+  description: ["Project description."],
   placeholder: true,
 }));

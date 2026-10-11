@@ -11,8 +11,8 @@ export type GalleryImage = { slot: string; caption: string };
 export type EngineeringProject = {
   slug: string;
   title: string;
+  /** One line under the title on the gallery card. */
   summary: string;
-  tags: string[];
   skills: string[];
   /** The hero gallery on the project page; the caption changes with each image. */
   gallery: GalleryImage[];
@@ -22,8 +22,6 @@ export type EngineeringProject = {
     progress: string[];
     next: string[];
   };
-  /** Marks wireframe "Ex." entries so they're easy to find and delete. */
-  placeholder?: boolean;
 };
 
 const placeholderGallery = (slug: string): GalleryImage[] => [
@@ -37,7 +35,6 @@ export const engineeringProjects: EngineeringProject[] = [
     slug: "brewos",
     title: "BrewOS",
     summary: "ESP32 Espresso System",
-    tags: ["Embedded", "IoT", "C/C++"],
     skills: ["ESP32", "ESP-IDF", "C/C++", "IoT"],
     gallery: placeholderGallery("brewos"),
     sections: {
@@ -58,7 +55,6 @@ export const engineeringProjects: EngineeringProject[] = [
     slug: "rabbithole",
     title: "RabbitHole",
     summary: "Literary Discovery Program",
-    tags: ["Software", "React", "TypeScript"],
     skills: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
     gallery: placeholderGallery("rabbithole"),
     sections: {
@@ -77,23 +73,6 @@ export const engineeringProjects: EngineeringProject[] = [
       ],
     },
   },
-  ...[1, 2].map(
-    (n): EngineeringProject => ({
-      slug: `example-${n}`,
-      title: "Ex.",
-      summary: "Desc",
-      tags: ["Type", "Languages", "etc"],
-      skills: ["Skill", "Skill", "Skill", "Skill"],
-      gallery: placeholderGallery(`example-${n}`),
-      sections: {
-        problem: ["What motivated the project, and what existing limitation are you trying to address?"],
-        process: ["Hardware modifications, firmware architecture, sensor integration, and technical decisions."],
-        progress: ["Document the problems encountered, how you approached them, and what currently works."],
-        next: ["Planned features, testing, and future development."],
-      },
-      placeholder: true,
-    })
-  ),
 ];
 
 export const SECTION_TITLES = {
