@@ -22,11 +22,11 @@ export function BreadcrumbBar({
 }: {
   trail: Crumb[];
   back: React.ReactNode;
-  /** Bigger, slightly bolder text and more space above (used on /engineering). */
+  /** Slightly bigger text and more space above (used on /engineering). */
   large?: boolean;
 }) {
   const size = large
-    ? "pt-12 sm:pt-16 text-base font-medium sm:text-lg"
+    ? "pt-12 sm:pt-16 text-base sm:text-lg"
     : "pt-8 sm:pt-10 text-sm sm:text-base";
 
   return (
