@@ -46,11 +46,26 @@ body {
   animation: page-in 250ms ease-out both;
 }
 
+/* "In progress" bar: a short segment drifting slowly along a hairline */
+@keyframes progress-drift {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+.progress-drift {
+  animation: progress-drift 3.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .page-in {
+  .page-in,
+  .progress-drift {
     animation: none;
   }
   *,

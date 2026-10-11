@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BackLink, BreadcrumbBar } from "@/components/breadcrumb-bar";
-import { CaseStudy } from "@/components/case-study";
 import { HeroGallery } from "@/components/hero-gallery";
+import { StatusBar } from "@/components/status-bar";
 import { engineeringProjects } from "@/content/engineering";
 import { photo } from "@/lib/photos";
 
@@ -48,16 +48,24 @@ export default async function EngineeringProjectPage({ params }: Props) {
           <HeroGallery images={images} />
         </div>
 
-        <h2 className="sr-only">Technical skills</h2>
-        <ul className="mt-14 flex flex-wrap justify-center gap-x-8 gap-y-3 sm:gap-x-14 text-lg sm:mt-20">
-          {project.skills.map((skill, i) => (
-            <li key={skill + i}>{skill}</li>
-          ))}
-        </ul>
-
-        <div className="mt-14 sm:mt-20">
-          <CaseStudy sections={project.sections} />
+        {/* Skills on the left, project status on the right (stacked on phones) */}
+        <div className="mt-12 flex flex-col gap-10 sm:mt-16 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="sr-only">Technical skills</h2>
+            <ul className="flex flex-wrap gap-3">
+              {project.skills.map((skill, i) => (
+                <li key={skill + i} className="border border-espresso/70 px-4 py-1.5">
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <StatusBar status={project.status} progress={project.progress} />
         </div>
+
+        {/* Case-study sections are hidden for now; the text is still in content/engineering.ts.
+            To bring them back: import CaseStudy from "@/components/case-study" and add
+            <div className="mt-20"><CaseStudy sections={project.sections} /></div> */}
       </main>
     </>
   );

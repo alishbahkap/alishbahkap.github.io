@@ -14,6 +14,10 @@ export type EngineeringProject = {
   /** One line under the title on the gallery card. */
   summary: string;
   skills: string[];
+  /** Label beside the progress bar, e.g. "In progress" or "Complete". */
+  status: string;
+  /** Optional 0–100. Leave out for a moving "in progress" bar with no number. */
+  progress?: number;
   /** The hero gallery on the project page; the caption changes with each image. */
   gallery: GalleryImage[];
   sections: {
@@ -36,6 +40,7 @@ export const engineeringProjects: EngineeringProject[] = [
     title: "BrewOS",
     summary: "ESP32 Espresso System",
     skills: ["ESP32", "ESP-IDF", "C/C++", "IoT"],
+    status: "In progress",
     gallery: placeholderGallery("brewos"),
     sections: {
       problem: [
@@ -56,6 +61,7 @@ export const engineeringProjects: EngineeringProject[] = [
     title: "RabbitHole",
     summary: "Literary Discovery Program",
     skills: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL"],
+    status: "In progress",
     gallery: placeholderGallery("rabbithole"),
     sections: {
       problem: [
