@@ -24,7 +24,7 @@ export default function About() {
 
       <main className="page-in mx-auto max-w-6xl px-5 pb-32 sm:px-10">
         <div className="mt-12 grid gap-12 sm:mt-16 md:grid-cols-[5fr_7fr] md:gap-16">
-          <ImageBox src={photo("about-portrait")} alt="Portrait of Alishbah Kapadia" ratio="aspect-[4/5]" />
+          <ImageBox src={photo("about-portrait")} alt="Portrait of Alishbah Kapadia" ratio="aspect-[1100/1429]" />
 
           <div>
             <h1 className="text-3xl font-light sm:text-4xl">Alishbah Kapadia</h1>
@@ -34,8 +34,10 @@ export default function About() {
                 internships in cloud (including SAP), embedded systems, product and software.
               </p>
               <p>
-                Alongside engineering, I&rsquo;ve freelanced since 2024 building Shopify product pages, brand
-                identities and advertising campaigns for e-commerce brands.
+                I&rsquo;ve been building experience across product R&amp;D, e-commerce development, and embedded and
+                full-stack projects. I&rsquo;m especially drawn to roles where I can understand how different pieces
+                fit together and make them work better; &ldquo;systems&rdquo; and &ldquo;optimization&rdquo; are my
+                two favourite words (in addition to &ldquo;books&rdquo; and &ldquo;coffee&rdquo;, clearly).
               </p>
             </div>
 
