@@ -24,7 +24,7 @@ export default function About() {
 
       <main className="page-in mx-auto max-w-6xl px-5 pb-32 sm:px-10">
         <div className="mt-12 grid gap-12 sm:mt-16 md:grid-cols-[5fr_7fr] md:gap-16">
-          <ImageBox src={photo("about-portrait")} alt="Portrait of Alishbah Kapadia" ratio="aspect-[1100/1429]" />
+          <ImageBox src={photo("about-portrait")} alt="Portrait of Alishbah Kapadia" ratio="aspect-[990/1199]" />
 
           <div>
             <h1 className="text-3xl font-light sm:text-4xl">Alishbah Kapadia</h1>
