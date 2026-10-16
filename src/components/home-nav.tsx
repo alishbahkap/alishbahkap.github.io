@@ -1,74 +1,46 @@
-"use client";
-
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { linkTone } from "./breadcrumb-bar";
 
-const EXIT_MS = 380; // matches .slide-in-* in globals.css
-const ROW_DELAY = 90; // second row starts a beat after the first
+// Hover on the photo: a soft dim reads better than the oxblood accent on coffee tones.
+const tone = "transition-opacity duration-200 hover:opacity-70 focus-visible:opacity-70";
 
-type Side = "left" | "right";
+/** Delay for the nth item to float in (the name is 0, the line 1, then each link). */
+export const floatDelay = (step: number) => ({ animationDelay: `${250 + step * 160}ms` });
 
 /**
- * The four home links either side of the center line.
- *
- * Each link lives in a cell with overflow-hidden whose inner edge IS the line,
- * so sliding the link sideways hides it "behind" the line. On load the links
- * slide out; clicking an internal link slides them all back in, then navigates.
+ * The four home links either side of the center line, staggered down the page:
+ * Engineering, Creative, About, Resume, alternating left and right.
+ * Everything floats up into place in that order, after the name and the line.
  */
 export function HomeNav({ resumeHref }: { resumeHref: string }) {
-  const router = useRouter();
-  const [leaving, setLeaving] = useState(false);
-
-  function go(event: React.MouseEvent<HTMLAnchorElement>, href: string) {
-    // Let ctrl/cmd/shift/middle-click open new tabs as normal
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    event.preventDefault();
-    setLeaving(true);
-    setTimeout(() => router.push(href), EXIT_MS + ROW_DELAY);
-  }
-
-  // Shared cell + slider styles. `pad` is the space between the text and the line.
-  const pad = "clamp(1.25rem,3.5vw,3rem)";
-  const cell = (side: Side) =>
-    side === "left" ? "overflow-hidden py-2 text-right" : "overflow-hidden py-2 text-left";
-  const slider = (side: Side, row: number) => ({
-    className: `inline-block ${
-      leaving ? (side === "left" ? "slide-in-left" : "slide-in-right") : side === "left" ? "slide-out-left" : "slide-out-right"
-    }`,
-    style: {
-      [side === "left" ? "paddingRight" : "paddingLeft"]: pad,
-      animationDelay: `${(leaving ? 0 : 200) + row * ROW_DELAY}ms`,
-    } as React.CSSProperties,
-  });
-
-  const internal = (side: Side, row: number, href: string, label: string) => (
-    <div className={cell(side)}>
-      <span {...slider(side, row)}>
-        <Link href={href} onClick={(e) => go(e, href)} className={linkTone}>
-          {label}
-        </Link>
-      </span>
-    </div>
-  );
+  const pad = "clamp(1rem,2.5vw,3rem)"; // space between the text and the line
+  const left = "col-start-1 text-right";
+  const right = "col-start-3 text-left";
 
   return (
-    <nav aria-label="Main" className={`mt-[clamp(2.5rem,8vh,5.5rem)] w-full max-w-2xl ${leaving ? "pointer-events-none" : ""}`}>
-      {/* Three columns: left links | 1px line | right links */}
-      <div className="grid grid-cols-[1fr_1px_1fr] gap-y-[clamp(1rem,4vh,2.75rem)] text-[clamp(1.2rem,2.4vw,2rem)] font-light">
-        {internal("left", 0, "/engineering", "Engineering")}
-        <span aria-hidden className="col-start-2 row-span-2 row-start-1 bg-espresso" />
-        {internal("right", 0, "/creative", "Creative")}
-        {internal("left", 1, "/about", "About")}
-        <div className={cell("right")}>
-          <span {...slider("right", 1)}>
-            <a href={resumeHref} target="_blank" rel="noopener" className={linkTone}>
-              Resume
-            </a>
-          </span>
+    <nav aria-label="Main" className="mt-[clamp(2rem,7vh,5rem)] w-full max-w-4xl">
+      {/* Three columns: left links | 1px line | right links. One row per link, so they step down. */}
+      <div className="grid grid-cols-[1fr_1px_1fr] text-[clamp(1.25rem,3.4vw,4rem)] leading-tight font-light">
+        <span aria-hidden className="float-up col-start-2 row-span-4 row-start-1 bg-current" style={floatDelay(1)} />
+
+        <div className={`float-up row-start-1 ${left}`} style={{ ...floatDelay(2), paddingRight: pad }}>
+          <Link href="/engineering" className={tone}>
+            Engineering
+          </Link>
+        </div>
+        <div className={`float-up row-start-2 ${right}`} style={{ ...floatDelay(3), paddingLeft: pad }}>
+          <Link href="/creative" className={tone}>
+            Creative
+          </Link>
+        </div>
+        <div className={`float-up row-start-3 ${left}`} style={{ ...floatDelay(4), paddingRight: pad }}>
+          <Link href="/about" className={tone}>
+            About
+          </Link>
+        </div>
+        <div className={`float-up row-start-4 ${right}`} style={{ ...floatDelay(5), paddingLeft: pad }}>
+          <a href={resumeHref} target="_blank" rel="noopener" className={tone}>
+            Resume
+          </a>
         </div>
       </div>
     </nav>
